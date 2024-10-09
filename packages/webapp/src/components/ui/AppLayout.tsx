@@ -1,13 +1,16 @@
-import { Box, Flex, Center, Wrap, WrapItem } from '@chakra-ui/react';
+import { Wrap, WrapItem } from '@chakra-ui/react';
 import GameTitle from './GameTitle';
 import GameLayout from '../GameLayout';
 import PlayerSection from '../player/PlayerSection';
 import PlayerName from '../player/PlayerName';
 import RobotAvatar from '../../assets/images/avatars/RobotAvatar';
 import HumanAvatar from '../../assets/images/avatars/HumanAvatar';
-import BasicButton from './BasicButton';
+
+import { useState } from 'react';
+import StartGaming from '../../views/StartGame';
 
 const AppLayout = () => {
+	const [isStarted, setIsStarted] = useState(false);
 	return (
 		<Wrap spacing="30px" justify="center" padding="30px">
 			<WrapItem>
@@ -19,11 +22,10 @@ const AppLayout = () => {
 			<PlayerSection playerAvatar={<RobotAvatar />}>
 				<PlayerName name="J-ordi"></PlayerName>
 			</PlayerSection>
-			<GameLayout></GameLayout>
-			<BasicButton buttonTitle="Commencer la partie" />
+			<GameLayout isStarted={isStarted} />
+			{/* <BasicButton {handleClick} buttonTitle="Commencer la partie" /> */}
+			<StartGaming onClick={() => setIsStarted(true)} isStarted={isStarted} />
 		</Wrap>
 	);
 };
 export default AppLayout;
-
-// <ButtonWithIllu width={297} buttonTitle="Commencer la partie" />

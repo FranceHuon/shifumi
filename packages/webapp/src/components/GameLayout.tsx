@@ -1,10 +1,13 @@
-import { Flex, Wrap } from '@chakra-ui/react';
+import { Flex, Text, Wrap } from '@chakra-ui/react';
 import BoxLayout from './ui/BoxLayout';
 import BoxHeading from './ui/BoxHeading';
 import GameRulesContainer from './gameRules/GameRulesContainer';
 import GameRules from './gameRules/GameRules';
 
-const GameLayout = () => {
+type GameLayoutProps = {
+	isStarted: boolean;
+};
+const GameLayout = ({ isStarted }: GameLayoutProps) => {
 	return (
 		<Flex gap={8}>
 			<BoxLayout width={224}>
@@ -19,6 +22,7 @@ const GameLayout = () => {
 
 			<BoxLayout width={710}>
 				<BoxHeading>Manche 1</BoxHeading>
+				{isStarted && <Text color="white">Jouez !</Text>}
 			</BoxLayout>
 
 			<BoxLayout>
