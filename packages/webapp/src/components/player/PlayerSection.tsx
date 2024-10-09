@@ -3,7 +3,6 @@ import { PropsWithChildren } from 'react';
 
 type PlayerSectionProps = PropsWithChildren<{
 	playerAvatar: React.ReactElement;
-	reverse?: boolean;
 }>;
 const PlayerSection = ({ playerAvatar, children }: PlayerSectionProps) => {
 	return (

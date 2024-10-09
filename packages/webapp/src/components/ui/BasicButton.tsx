@@ -1,4 +1,4 @@
-import { Button, Box } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
 
 type BasicButtonProps = {
 	leftIcon?: React.ReactElement;
@@ -8,24 +8,23 @@ type BasicButtonProps = {
 
 const BasicButton = ({ leftIcon, buttonTitle, width }: BasicButtonProps) => {
 	return (
-		<Box bg="primary.hardBlue" height={100} width={width} rounded="2xl">
-			<Button
-				bg="secondary.electricBlue"
-				leftIcon={leftIcon}
-				width={width}
-				height={90}
-				rounded="2xl"
-				color="tertiary.white"
-				variant="solid"
-				textAlign="left"
-				fontWeight={400}
-				fontSize={24}
-				padding={10}
-				_hover={{}}
-			>
-				{buttonTitle}
-			</Button>
-		</Box>
+		<Button
+			bg="secondary.electricBlue"
+			leftIcon={leftIcon}
+			width={width}
+			height={90}
+			rounded="2xl"
+			variant="solid"
+			textAlign="left"
+			fontWeight={400}
+			fontSize={24}
+			padding={10}
+			boxShadow={`0 4px 0 0`}
+			color="primary.hardBlue"
+			_hover={{}}
+		>
+			<Text color="tertiary.white">{buttonTitle}</Text>
+		</Button>
 	);
 };
 
