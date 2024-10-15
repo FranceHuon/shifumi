@@ -4,8 +4,8 @@ type SymbolCardProps = {
 	backgroundColor: string;
 	borderColor: string;
 	color: string;
-	symbolName: string;
-	icon: React.ReactElement;
+	symbolName?: string;
+	illu?: React.ReactElement;
 };
 
 const SymbolCard = ({
@@ -13,12 +13,12 @@ const SymbolCard = ({
 	borderColor,
 	color,
 	symbolName,
-	icon,
+	illu,
 }: SymbolCardProps) => {
 	return (
 		<Box
 			width={160}
-			height={216}
+			height={220}
 			bg="tertiary.white"
 			rounded="2xl"
 			border="4px"
@@ -31,7 +31,7 @@ const SymbolCard = ({
 			padding={2}
 			boxShadow={`0 4px 0 0`}
 		>
-			{icon}
+			{illu}
 			<Text padding={2} fontWeight={400} color={color}>
 				{symbolName}
 			</Text>

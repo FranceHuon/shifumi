@@ -1,7 +1,9 @@
 import { Button, Text } from '@chakra-ui/react';
+import { Choice } from './AppLayout';
 
 type BasicButtonProps = {
-	onClick: () => void;
+	onClick?: () => void;
+	choice?: Choice;
 	leftIcon?: React.ReactElement;
 	buttonTitle: string;
 	width?: number;
@@ -25,6 +27,7 @@ const BasicButton = ({
 			fontWeight={400}
 			fontSize={24}
 			padding={10}
+			margin={3}
 			boxShadow={`0 4px 0 0`}
 			color="primary.hardBlue"
 			_hover={{}}
