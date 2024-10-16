@@ -9,12 +9,13 @@ import RedLeafIllu from '../../assets/images/illus/red/RedLeafIllu';
 import RedScissorsIllu from '../../assets/images/illus/red/RedScissorsIllu';
 import RedStoneIllu from '../../assets/images/illus/red/RedStoneIllu';
 import Buttons from '../../game/Buttons';
-import StartGame from '../../lib/utils/StartGame';
-import GameLayout from '../GameLayout';
-import PlayerName from '../player/PlayerName';
-import PlayerSection from '../player/PlayerSection';
-import GameTitle from './GameTitle';
 import getRandomChoice from '../../lib/utils/RandomChoice';
+import round from '../../lib/utils/GameLogic';
+import GameTitle from './GameTitle';
+import PlayerSection from '../player/PlayerSection';
+import PlayerName from '../player/PlayerName';
+import GameLayout from '../GameLayout';
+import StartGame from '../../lib/utils/StartGame';
 
 export enum Choice {
 	LEAF = 'LEAF',
@@ -40,18 +41,37 @@ export const choices = {
 	},
 };
 
+export type playersChoices = {
+	userChoice: Choice | null;
+	computerChoice: Choice | null;
+}[];
+
 const AppLayout = () => {
 	const [isStarted, setIsStarted] = useState(false);
-	const [handsChoice, setHandsChoice] = useState<Choice | null>(null);
-	const [computerChoice, setComputerChoice] = useState<Choice | null>(null);
+	const [gamePlay, setGamePlay] = useState<playersChoices>([]);
 
+	// const [userChoice, setUserChoice] = useState
+	// const [computerChoice, setComputerChoice] = useState<Choice | null>(null);
 	const handleChoice = (choice: Choice) => {
-		setHandsChoice(choice);
-		setTimeout(() => {
-			const random = getRandomChoice();
-			setComputerChoice(random);
-		}, 2000);
+		setGamePlay([
+			...gamePlay,
+			{
+				userChoice: choice,
+				computerChoice: getRandomChoice(),
+			},
+		]);
 	};
+
+	// round(gamePlay);
+
+	// round(userChoice, computerChoice);
+
+	// const handleTurns = () => {
+	// 	setCount(count - 1);
+	// 	return console.log('you already played 5 times');
+	// };
+
+	// handleTurns();
 
 	return (
 		<Flex
@@ -73,8 +93,9 @@ const AppLayout = () => {
 
 			<GameLayout
 				isStarted={isStarted}
-				handsChoice={handsChoice}
-				computerChoice={computerChoice}
+				// userChoice={userChoice}
+				// computerChoice={computerChoice}
+				gamePlay={gamePlay}
 			/>
 
 			<StartGame onClick={() => setIsStarted(true)} isStarted={isStarted} />

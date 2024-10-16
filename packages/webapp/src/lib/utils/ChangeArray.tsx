@@ -1,12 +1,17 @@
 import { useState } from 'react';
 
 const initialsSymbols = [
-	{ id: 1, name: 'stone' },
+	{ id: null, name: 'stone' },
 	{ id: 2, name: 'leaf' },
 ];
 
+type MyArray = {
+	id: number;
+	name: string;
+}[];
+
 export default function ChangeArray() {
-	const [symbols, setSymbols] = useState(initialsSymbols);
+	const [symbols, setSymbols] = useState<MyArray>(initialsSymbols);
 
 	function addSymbols() {
 		setSymbols([...symbols, { id: 3, name: 'scissors' }]);

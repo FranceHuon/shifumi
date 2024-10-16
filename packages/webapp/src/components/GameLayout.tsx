@@ -1,21 +1,21 @@
 import { Box, Flex, Heading } from '@chakra-ui/react';
 import GameRules from './gameRules/GameRules';
 import GameRulesContainer from './gameRules/GameRulesContainer';
-import { Choice, choices } from './ui/AppLayout';
+import { Choice, choices, playersChoices } from './ui/AppLayout';
 import BoxHeading from './ui/BoxHeading';
 import BoxLayout from './ui/BoxLayout';
 import SymbolCard from './ui/SymbolCard';
 
 type GameLayoutProps = {
 	isStarted: boolean;
-	handsChoice: Choice | null;
-	computerChoice: Choice | null;
+	gamePlay: playersChoices;
 };
-const GameLayout = ({
-	isStarted,
-	handsChoice,
-	computerChoice,
-}: GameLayoutProps) => {
+const GameLayout = ({ isStarted, gamePlay }: GameLayoutProps) => {
+	const lastGamePlay = gamePlay[gamePlay.length - 1];
+	const userLastGamePlay = lastGamePlay?.userChoice;
+	const computerLastGamePlay = lastGamePlay?.computerChoice;
+	console.log(lastGamePlay, userLastGamePlay, computerLastGamePlay);
+
 	return (
 		<Flex gap={8} justifyContent="center">
 			<BoxLayout width={224}>
@@ -30,13 +30,13 @@ const GameLayout = ({
 
 			<BoxLayout width={710}>
 				<BoxHeading>Manche 1</BoxHeading>
-				{isStarted && !handsChoice && (
+				{isStarted && !gamePlay && (
 					<Heading display="flex" margin={20} color="secondary.lightBlue">
 						Jouez !
 					</Heading>
 				)}
 				<Flex width="full" flexGrow={1}>
-					{handsChoice && (
+					{userLastGamePlay && (
 						<Box
 							display="flex"
 							width="50%"
@@ -49,12 +49,12 @@ const GameLayout = ({
 								borderColor="secondary.electricBlue"
 								color="primary.hardBlue"
 								backgroundColor="primary.hardBlue"
-								symbolName={choices[handsChoice].name}
-								illu={choices[handsChoice].blueIllu}
+								symbolName={choices[userLastGamePlay].name}
+								illu={choices[userLastGamePlay].blueIllu}
 							/>
 						</Box>
 					)}
-					{computerChoice && (
+					{computerLastGamePlay && (
 						<Box
 							width="50%"
 							display="flex"
@@ -67,8 +67,8 @@ const GameLayout = ({
 								borderColor="tertiary.red"
 								color="tertiary.red"
 								backgroundColor="secondary.darkRed"
-								symbolName={choices[computerChoice].name}
-								illu={choices[computerChoice].redIllu}
+								symbolName={choices[computerLastGamePlay].name}
+								illu={choices[computerLastGamePlay].redIllu}
 							></SymbolCard>
 						</Box>
 					)}
