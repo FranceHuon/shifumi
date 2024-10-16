@@ -9,9 +9,13 @@ import SymbolCard from './ui/SymbolCard';
 type GameLayoutProps = {
 	isStarted: boolean;
 	handsChoice: Choice | null;
-	// computerChoice: Choice | null;
+	computerChoice: Choice | null;
 };
-const GameLayout = ({ isStarted, handsChoice }: GameLayoutProps) => {
+const GameLayout = ({
+	isStarted,
+	handsChoice,
+	computerChoice,
+}: GameLayoutProps) => {
 	return (
 		<Flex gap={8} justifyContent="center">
 			<BoxLayout width={224}>
@@ -50,7 +54,7 @@ const GameLayout = ({ isStarted, handsChoice }: GameLayoutProps) => {
 							/>
 						</Box>
 					)}
-					{/* {computerChoice && (
+					{computerChoice && (
 						<Box
 							width="50%"
 							display="flex"
@@ -67,7 +71,7 @@ const GameLayout = ({ isStarted, handsChoice }: GameLayoutProps) => {
 								illu={choices[computerChoice].redIllu}
 							></SymbolCard>
 						</Box>
-					)} */}
+					)}
 				</Flex>
 			</BoxLayout>
 

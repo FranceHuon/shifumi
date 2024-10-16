@@ -14,6 +14,7 @@ import GameLayout from '../GameLayout';
 import PlayerName from '../player/PlayerName';
 import PlayerSection from '../player/PlayerSection';
 import GameTitle from './GameTitle';
+import getRandomChoice from '../../lib/utils/RandomChoice';
 
 export enum Choice {
 	LEAF = 'LEAF',
@@ -44,6 +45,14 @@ const AppLayout = () => {
 	const [handsChoice, setHandsChoice] = useState<Choice | null>(null);
 	const [computerChoice, setComputerChoice] = useState<Choice | null>(null);
 
+	const handleChoice = (choice: Choice) => {
+		setHandsChoice(choice);
+		setTimeout(() => {
+			const random = getRandomChoice();
+			setComputerChoice(random);
+		}, 2000);
+	};
+
 	return (
 		<Flex
 			gap={8}
@@ -62,12 +71,18 @@ const AppLayout = () => {
 				</PlayerSection>
 			</Flex>
 
-			<GameLayout isStarted={isStarted} handsChoice={handsChoice} />
+			<GameLayout
+				isStarted={isStarted}
+				handsChoice={handsChoice}
+				computerChoice={computerChoice}
+			/>
 
 			<StartGame onClick={() => setIsStarted(true)} isStarted={isStarted} />
 			{isStarted}
 
-			{isStarted && <Buttons handleUserChoice={setHandsChoice} />}
+			{isStarted && (
+				<Buttons handleUserChoice={(choice) => handleChoice(choice)} />
+			)}
 		</Flex>
 	);
 };
