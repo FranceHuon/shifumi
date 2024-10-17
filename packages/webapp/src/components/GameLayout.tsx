@@ -5,6 +5,10 @@ import { Choice, choices, playersChoices } from './ui/AppLayout';
 import BoxHeading from './ui/BoxHeading';
 import BoxLayout from './ui/BoxLayout';
 import SymbolCard from './ui/SymbolCard';
+import round from '../lib/utils/GameLogic';
+import GameLogic from '../lib/utils/GameLogic';
+import ResultScreen from './ui/ResultScreen';
+import { useMemo } from 'react';
 
 type GameLayoutProps = {
 	isStarted: boolean;
@@ -14,7 +18,6 @@ const GameLayout = ({ isStarted, gamePlay }: GameLayoutProps) => {
 	const lastGamePlay = gamePlay[gamePlay.length - 1];
 	const userLastGamePlay = lastGamePlay?.userChoice;
 	const computerLastGamePlay = lastGamePlay?.computerChoice;
-	console.log(lastGamePlay, userLastGamePlay, computerLastGamePlay);
 
 	return (
 		<Flex gap={8} justifyContent="center">
@@ -54,6 +57,13 @@ const GameLayout = ({ isStarted, gamePlay }: GameLayoutProps) => {
 							/>
 						</Box>
 					)}
+					{userLastGamePlay && computerLastGamePlay && (
+						<ResultScreen
+							userLastGamePlay={userLastGamePlay}
+							computerLastGamePlay={computerLastGamePlay}
+						></ResultScreen>
+					)}
+
 					{computerLastGamePlay && (
 						<Box
 							width="50%"
@@ -70,6 +80,8 @@ const GameLayout = ({ isStarted, gamePlay }: GameLayoutProps) => {
 								symbolName={choices[computerLastGamePlay].name}
 								illu={choices[computerLastGamePlay].redIllu}
 							></SymbolCard>
+							{/* {win && <ResultScreen result="Gagné !"></ResultScreen>}
+							{loose && <ResultScreen result="Perdu"></ResultScreen>} */}
 						</Box>
 					)}
 				</Flex>

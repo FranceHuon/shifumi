@@ -62,17 +62,6 @@ const AppLayout = () => {
 		]);
 	};
 
-	// round(gamePlay);
-
-	// round(userChoice, computerChoice);
-
-	// const handleTurns = () => {
-	// 	setCount(count - 1);
-	// 	return console.log('you already played 5 times');
-	// };
-
-	// handleTurns();
-
 	return (
 		<Flex
 			gap={8}
@@ -91,12 +80,7 @@ const AppLayout = () => {
 				</PlayerSection>
 			</Flex>
 
-			<GameLayout
-				isStarted={isStarted}
-				// userChoice={userChoice}
-				// computerChoice={computerChoice}
-				gamePlay={gamePlay}
-			/>
+			<GameLayout isStarted={isStarted} gamePlay={gamePlay} />
 
 			<StartGame onClick={() => setIsStarted(true)} isStarted={isStarted} />
 			{isStarted}
