@@ -33,11 +33,13 @@ const GameLayout = ({ isStarted, gamePlay }: GameLayoutProps) => {
 			</BoxLayout>
 
 			<BoxLayout width={710}>
-				<BoxHeading>Manche 1</BoxHeading>
 				{isStarted && !gamePlay && (
-					<Heading display="flex" margin={20} color="secondary.lightBlue">
-						Jouez !
-					</Heading>
+					<Box>
+						<BoxHeading>Manche 1</BoxHeading>
+						<Heading display="flex" margin={20} color="secondary.lightBlue">
+							Jouez !
+						</Heading>
+					</Box>
 				)}
 				<Flex width="full" flexGrow={1}>
 					{userLastGamePlay && (

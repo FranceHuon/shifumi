@@ -27,6 +27,7 @@ const GeneratetHitsHistory = ({
 				' bat ' +
 				`${choices[computerLastGamePlay].name}`;
 			console.log(hitHistory);
+
 			return hitHistory;
 		} else {
 			const hitHistory =

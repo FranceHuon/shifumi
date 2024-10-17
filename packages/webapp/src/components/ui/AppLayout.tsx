@@ -49,6 +49,7 @@ const AppLayout = () => {
 	const [isStarted, setIsStarted] = useState(false);
 	const [gamePlay, setGamePlay] = useState<playersChoices>([]);
 
+	// const [count, setCount] = useState(1);
 	// const [userChoice, setUserChoice] = useState
 	// const [computerChoice, setComputerChoice] = useState<Choice | null>(null);
 	const handleChoice = (choice: Choice) => {
@@ -60,6 +61,10 @@ const AppLayout = () => {
 			},
 		]);
 	};
+
+	// const generateRoundNumber = () => {
+	// 	setCount(count + 1);
+	// };
 
 	return (
 		<Flex

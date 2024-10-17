@@ -1,8 +1,8 @@
 import { Heading } from '@chakra-ui/react';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Choice } from './AppLayout';
 
-enum Result {
+export enum Result {
 	DRAW = 'Égalité !',
 	WIN = 'Gagné !',
 	LOOSE = 'Perdu !',
@@ -13,10 +13,27 @@ type ResultScreenProps = {
 	computerLastGamePlay: Choice;
 };
 
+export type gameScores = {
+	userScore: number;
+	computerScore: number;
+}[];
+
 const ResultSCreen = ({
 	userLastGamePlay,
 	computerLastGamePlay,
 }: ResultScreenProps) => {
+	const [scores, setScores] = useState<gameScores>([]);
+
+	const handleScore = (score: number) => {
+		setScores([
+			...scores,
+			{
+				userScore: score,
+				computerScore: score,
+			},
+		]);
+	};
+
 	const roundResult = useMemo(() => {
 		if (userLastGamePlay === computerLastGamePlay) {
 			return Result.DRAW;
@@ -30,7 +47,6 @@ const ResultSCreen = ({
 		) {
 			return Result.LOOSE;
 		} else {
-			// const history = `${userLastGamePlay} bat ${computerLastGamePlay}`;
 			return Result.WIN;
 		}
 	}, [userLastGamePlay, computerLastGamePlay]);
