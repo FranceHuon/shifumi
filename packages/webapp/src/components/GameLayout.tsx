@@ -1,14 +1,14 @@
 import { Box, Flex, Heading } from '@chakra-ui/react';
 import GameRules from './gameRules/GameRules';
 import GameRulesContainer from './gameRules/GameRulesContainer';
-import { Choice, choices, playersChoices } from './ui/AppLayout';
+import { choices, playersChoices } from './ui/AppLayout';
 import BoxHeading from './ui/BoxHeading';
 import BoxLayout from './ui/BoxLayout';
-import SymbolCard from './ui/SymbolCard';
-import round from '../lib/utils/GameLogic';
-import GameLogic from '../lib/utils/GameLogic';
 import ResultScreen from './ui/ResultScreen';
-import { useMemo } from 'react';
+import SymbolCard from './ui/SymbolCard';
+import HitsHistoryTag from './hitsHistory/HitsHistoryTag';
+import getHitsHistory from './hitsHistory/GenerateHitsHistory';
+import GenerateHitsHistory from './hitsHistory/GenerateHitsHistory';
 
 type GameLayoutProps = {
 	isStarted: boolean;
@@ -18,6 +18,7 @@ const GameLayout = ({ isStarted, gamePlay }: GameLayoutProps) => {
 	const lastGamePlay = gamePlay[gamePlay.length - 1];
 	const userLastGamePlay = lastGamePlay?.userChoice;
 	const computerLastGamePlay = lastGamePlay?.computerChoice;
+	console.log(computerLastGamePlay);
 
 	return (
 		<Flex gap={8} justifyContent="center">
@@ -80,8 +81,6 @@ const GameLayout = ({ isStarted, gamePlay }: GameLayoutProps) => {
 								symbolName={choices[computerLastGamePlay].name}
 								illu={choices[computerLastGamePlay].redIllu}
 							></SymbolCard>
-							{/* {win && <ResultScreen result="Gagné !"></ResultScreen>}
-							{loose && <ResultScreen result="Perdu"></ResultScreen>} */}
 						</Box>
 					)}
 				</Flex>
@@ -89,6 +88,12 @@ const GameLayout = ({ isStarted, gamePlay }: GameLayoutProps) => {
 
 			<BoxLayout>
 				<BoxHeading>Historique des coups</BoxHeading>
+				{userLastGamePlay && computerLastGamePlay && (
+					<GenerateHitsHistory
+						userLastGamePlay={userLastGamePlay}
+						computerLastGamePlay={computerLastGamePlay}
+					></GenerateHitsHistory>
+				)}
 			</BoxLayout>
 		</Flex>
 	);

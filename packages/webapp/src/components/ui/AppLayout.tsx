@@ -10,12 +10,11 @@ import RedScissorsIllu from '../../assets/images/illus/red/RedScissorsIllu';
 import RedStoneIllu from '../../assets/images/illus/red/RedStoneIllu';
 import Buttons from '../../game/Buttons';
 import getRandomChoice from '../../lib/utils/RandomChoice';
-import round from '../../lib/utils/GameLogic';
-import GameTitle from './GameTitle';
-import PlayerSection from '../player/PlayerSection';
-import PlayerName from '../player/PlayerName';
-import GameLayout from '../GameLayout';
 import StartGame from '../../lib/utils/StartGame';
+import GameLayout from '../GameLayout';
+import PlayerName from '../player/PlayerName';
+import PlayerSection from '../player/PlayerSection';
+import GameTitle from './GameTitle';
 
 export enum Choice {
 	LEAF = 'LEAF',
