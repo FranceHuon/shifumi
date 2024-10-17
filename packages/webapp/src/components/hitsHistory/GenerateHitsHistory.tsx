@@ -11,7 +11,10 @@ const GeneratetHitsHistory = ({
 	computerLastGamePlay,
 }: GeneratetHitsHistoryProps) => {
 	const getHistory = () => {
-		if (
+		if (userLastGamePlay === computerLastGamePlay) {
+			const hitHistory = 'égalité';
+			return hitHistory;
+		} else if (
 			(userLastGamePlay === Choice.LEAF &&
 				computerLastGamePlay === Choice.STONE) ||
 			(userLastGamePlay === Choice.STONE &&
